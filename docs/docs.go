@@ -94,7 +94,7 @@ const docTemplate_swagger = `{
 // SwaggerInfo_swagger holds exported Swagger Info so clients can modify it
 var SwaggerInfo_swagger = &swag.Spec{
 	Version:          "1.0",
-	Host:             "wgz.fly.test",
+	Host:             "t.wuguozhang.com",
 	BasePath:         "",
 	Schemes:          []string{},
 	Title:            "shorturl API",

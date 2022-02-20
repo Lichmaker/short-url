@@ -10,7 +10,7 @@
         },
         "version": "1.0"
     },
-    "host": "wgz.fly.test",
+    "host": "t.wuguozhang.com",
     "paths": {
         "/api/v1/auth/get-token": {
             "post": {
