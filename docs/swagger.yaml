@@ -1,0 +1,55 @@
+host: wgz.fly.test
+info:
+  contact:
+    email: lich.wu2014@gmail.com
+    name: 吴国章
+    url: https://www.wuguozhang.com/about-me.html
+  description: 简单的短链接项目，具体可查看 README.md
+  title: shorturl API
+  version: "1.0"
+paths:
+  /api/v1/auth/get-token:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: 传入appid，目前未接入appid授权功能，随便一个字符串达到32长度就行
+        example: "12345678901234567890123456789012"
+        in: body
+        name: app_id
+        required: true
+        schema:
+          type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"data":{"token":""},"success":true}'
+          schema:
+            type: string
+      summary: 获取JWT
+  /api/v1/short:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: 长链接
+        in: body
+        name: url
+        required: true
+        schema:
+          type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"data":{"long_url":"","url":""},"success":true}'
+          schema:
+            type: string
+      summary: 获取短链接
+securityDefinitions:
+  Bearer Token，使用JWT:
+    in: header
+    name: Authorization
+    type: apiKey
+swagger: "2.0"

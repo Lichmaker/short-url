@@ -10,6 +10,7 @@ import (
 	"os"
 	"shorturl/bootstrap"
 	btsConfig "shorturl/config"
+	_ "shorturl/docs" // 引入生成好的文档
 	"shorturl/pkg/app"
 	"shorturl/pkg/config"
 	"shorturl/pkg/console"
@@ -23,7 +24,19 @@ func init() {
 	btsConfig.Initialize()
 }
 
+// @title shorturl API
+// @version 1.0
+// @description 简单的短链接项目，具体可查看 README.md
+// @contact.name 吴国章
+// @contact.url https://www.wuguozhang.com/about-me.html
+// @contact.email lich.wu2014@gmail.com
+// @host t.wuguozhang.com
+
+// @securityDefinitions.apikey  Bearer Token，使用JWT
+// @in                          header
+// @name                        Authorization
 func main() {
+
 	app.AbsolutePath, _ = os.Getwd()
 
 	// 主入口，调用 cmd.CmdServe 命令

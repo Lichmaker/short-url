@@ -14,6 +14,12 @@ type TokenController struct {
 	v1.BaseAPIController
 }
 
+// @Summary 获取JWT
+// @Accept json
+// @Produce  json
+// @Param  app_id body string true "传入appid，目前未接入appid授权功能，随便一个字符串达到32长度就行" example(12345678901234567890123456789012)
+// @Success 200 string json "{"data":{"token":""},"success":true}"
+// @Router /api/v1/auth/get-token [post]
 func (controller *TokenController) Get(c *gin.Context) {
 	// 接受参数appkey，只有对应的appkey才可以生成token
 	request := &requests.TokenRequest{}

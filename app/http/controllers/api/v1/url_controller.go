@@ -12,6 +12,12 @@ type UrlController struct {
 	BaseAPIController
 }
 
+// @Summary 获取短链接
+// @Accept json
+// @Produce  json
+// @Param  url  body string true "长链接"
+// @Success 200 {string} json "{"data":{"long_url":"","url":""},"success":true}"
+// @Router /api/v1/short [post]
 func (controller *UrlController) Short(c *gin.Context) {
 	request := &requests.ShortRequest{}
 	if !requests.Validate(c, request, requests.GetShort) {
@@ -28,4 +34,5 @@ func (controller *UrlController) Short(c *gin.Context) {
 			"long_url": request.Url,
 		})
 	}
+
 }
