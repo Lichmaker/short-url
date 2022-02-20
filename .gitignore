@@ -4,8 +4,7 @@ shorturl
 .DS_Store
 .history
 shorturl
-shorturl.log
-shorturl.pid
+*.pid
 
 # Golang #
 ######################

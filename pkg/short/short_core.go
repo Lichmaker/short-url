@@ -43,13 +43,19 @@ func Generate(longUrl string) (string, bool) {
 }
 
 // 短链接换长链接
-func Get(shortStr string) (string, bool) {
-	model := short.GetByShort(shortStr)
+func Get(shortStr string) (short.Short, bool) {
+	// 查缓存
+	model := getCache(shortStr)
 	if model.ID == 0 {
-		return "", false
+		// 查库
+		model := short.GetByShort(shortStr)
+		if model.ID == 0 {
+			return model, false
+		}
 	}
+
 	setCache(model)
-	return model.Long, true
+	return model, true
 }
 
 func getShortUrl(model short.Short) string {

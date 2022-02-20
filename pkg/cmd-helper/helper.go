@@ -35,7 +35,7 @@ func runInLinux(cmd string) (string, error) {
 
 //根据进程名判断进程是否运行
 func CheckProRunning(serverName string) (bool, error) {
-	a := `ps aux | awk '/` + serverName + `/ && !/awk/ {print $2}'`
+	a := `ps aux | awk '/` + serverName + `/ && !/awk/ {print $1}'`
 	pid, err := RunCommand(a)
 	if err != nil {
 		return false, err
@@ -45,7 +45,7 @@ func CheckProRunning(serverName string) (bool, error) {
 
 //根据进程名称获取进程ID
 func GetPid(serverName string) (string, error) {
-	a := `ps aux | awk '/` + serverName + `/ && !/awk/ {print $2}'`
+	a := `ps aux | awk '/` + serverName + `/ && !/awk/ {print $1}'`
 	pid, err := RunCommand(a)
 	return pid, err
 }

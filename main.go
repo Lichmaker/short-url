@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"shorturl/app/cmd"
+	"shorturl/app/cmd/consumer"
 	"shorturl/app/cmd/make"
 	"shorturl/app/cmd/serve"
 
@@ -52,7 +53,7 @@ func main() {
 		cmd.CmdMigrate,
 		make.CmdMake,
 		cmd.CmdTidyCache,
-		// cmd.CmdRestart,
+		consumer.CmdConsumer,
 	)
 
 	// 配置默认使用的子命令

@@ -69,7 +69,7 @@ docker build -f ./Dockerfile-Dev -t shorturl .
 # 启动容器
 docker run --name="shorturl" -p 宿主端口:容器端口 -v 本地项目绝对路径:/sourcecode -d shorturl /bin/sh -c "while true; do  sleep 1; done"
 # 举个栗子🌰 配置文件中 APP_PORT=8006 , 需要暴露 8005 端口
-docker run --name="shorturl" -p 8005:8006 -v /Users/lichmaker/go/src/github.com/lichmaker/short-url:/sourcecode -d shorturl /bin/sh -c "while true; do  sleep 1; done"
+docker run --name="shorturl" -p 8005:8006 -v /Users/wuguozhang/go/src/github.com/lichmaker/short-url:/sourcecode -d shorturl /bin/sh -c "while true; do  sleep 1; done"
 
 # 编译
 docker exec -w /sourcecode shorturl go build
@@ -117,3 +117,16 @@ docker exec -w /app shorturl ./shorturl serve restart
 
 # API
 swagger todo
+
+# kafka
+
+## 容器
+```
+docker-compose -f kafka-docker-compose.yml up -d
+```
+
+## 创建 topic
+
+```
+docker exec c_kafka1 kafka-topics.sh --create --bootstrap-server localhost:9092 --replication-factor 2 --partitions 3 --topic shorturl_stat
+```

@@ -23,7 +23,7 @@ var CmdServe = &cobra.Command{
 }
 
 func init() {
-	// 注册 make 的子命令
+	// 注册子命令
 	CmdServe.AddCommand(
 		CmdRestart,
 	)

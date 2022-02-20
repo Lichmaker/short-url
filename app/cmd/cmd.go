@@ -3,6 +3,7 @@ package cmd
 
 import (
 	"os"
+	"shorturl/app/cmd/consumer"
 	"shorturl/app/cmd/serve"
 	"shorturl/pkg/helpers"
 
@@ -20,6 +21,8 @@ func RegisterGlobalFlags(rootCmd *cobra.Command) {
 // 注册其他命令的flag
 func RegisterCommandFlags() {
 	serve.CmdServe.Flags().BoolVarP(&serve.RunServerDaemon, "daemon", "d", false, "run server as a daemon")
+	consumer.CmdConsumer.Flags().StringVarP(&consumer.RunConsumerCount, "count", "c", "", "传入需要启动的消费者数量")
+	consumer.CmdConsumer.Flags().BoolVarP(&consumer.RunInstance, "instance", "i", false, "直接启动一个实例")
 }
 
 // RegisterDefaultCmd 注册默认命令
