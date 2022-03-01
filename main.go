@@ -49,7 +49,7 @@ func main() {
 		PersistentPreRun: func(command *cobra.Command, args []string) {
 			traceid.Boot("")
 
-			config.InitConfig(cmd.Env)
+			config.InitConfig(cmd.Env, "")
 
 			bootstrap.SetupLogger()
 			bootstrap.SetupDB()

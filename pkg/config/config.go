@@ -29,8 +29,8 @@ func init() {
 }
 
 // 初始化配置信息，完成环境变量和config的加载
-func InitConfig(env string) {
-	loadEnv(env)
+func InitConfig(env string, appointedEnvPath string) {
+	loadEnv(env, appointedEnvPath)
 
 	loadConfig()
 }
@@ -41,16 +41,20 @@ func loadConfig() {
 	}
 }
 
-func loadEnv(envSuffix string) {
-	envPath := ".env"
-	if len(envSuffix) > 0 {
-		filePath := ".env" + envSuffix
-		if _, err := os.Stat(filePath); err == nil {
-			envPath = filePath
+func loadEnv(envSuffix string, appointedEnvPath string) {
+	if len(appointedEnvPath) > 0 {
+		viper.SetConfigFile(appointedEnvPath)
+	} else {
+		envPath := ".env"
+		if len(envSuffix) > 0 {
+			filePath := ".env" + envSuffix
+			if _, err := os.Stat(filePath); err == nil {
+				envPath = filePath
+			}
 		}
+		viper.SetConfigName(envPath)
 	}
 
-	viper.SetConfigName(envPath)
 	if err := viper.ReadInConfig(); err != nil {
 		panic(err)
 	}
